@@ -1,2 +1,216 @@
-# alpine-linux-cheat-sheet
-Alpine Linux useful commands &amp; terminal cheat sheet
+# Alpine Linux useful commands & terminal cheat sheet
+
+![Alpine Linux useful commands & terminal cheat sheet](/assets/alpine.jpg)
+
+Minimal set of useful commands for Alpine Linux
+
+## Installing a package
+
+To install packages on Alpine Linux, use the syntax:
+
+```sh
+apk add package_name
+```
+
+For example, to install the nano text editor, run the command:
+
+```sh
+apk add nano
+```
+
+Additionally, you can install multiple packages in a single command using the syntax:
+
+```sh
+apk add package1 package2
+```
+
+For example, the command below installs neofetch and vim editor at a go.
+
+```sh
+apk add neofetch vim
+```
+
+You can confirm if you installed neofetch by running the command:
+
+```sh
+neofetch
+```
+
+This populates information about the operating system such as OS type, kernel, uptime, and underlying hardware such as CPU and memory.
+
+![This populates information about the operating system such as OS type, kernel, uptime, and underlying hardware such as CPU and memory.](/assets/Neofetch-Show-Linux-Information.png)
+
+To confirm that vim editor is installed, simply run the vim command without any arguments and this will display information about vim.
+
+```sh
+vim
+```
+
+![vim editor](/assets/Vim-Editor-Info.png)
+
+or
+
+```sh
+nano
+```
+
+## Uninstalling a package
+
+```sh
+apk del neovim
+```
+
+## List All Installed Packages
+
+To list all installed packages on Alpine Linux, run the command:
+
+```sh
+apk info
+```
+
+![List All Installed Packages](/assets/List-All-Installed-Packages-in-Alpine-Linux.png)
+
+## Update Alpine Linux
+
+To update the repositories and package lists on Alpine Linux, run the command
+
+```sh
+apk update
+```
+
+## Search for an Availability of Packages
+
+Before installing packages, it’s worthwhile to check if the packages have been officially been hosted in the repositories. To do so, use the syntax:
+
+```sh
+apk search package_name   
+```
+
+For example, to search for a nano package in the repositories, run the command:
+
+```sh
+apk search nano
+```
+
+## Get a Description of an Installed Package
+
+To get a description of a package in the repositories, about the package pass the -v and -d flags as shown. The option -d is short for description whilst the -v option prints out verbose output.
+
+```sh
+apk search -v -d nano
+```
+
+## Upgrade Alpine Linux
+
+To upgrade all the packages on Alpine Linux to their latest versions, run the command
+
+```sh
+apk upgrade
+```
+
+![Upgrade Alpine Linux](/assets/Upgrade-Alpine-Linux.png)
+
+The -a option allows downgrading packages to what's available in the repository. It is generally recommended to always use this option, especially on stable releases, to ensure that any package reverts make it to your device.
+
+```sh
+apk upgrade -a
+```
+
+To perform a dry run of the upgrade, pass the -s option. This merely runs a simulation and shows the versions that the packages will be upgraded to. It does not upgrade the packages.
+
+```sh
+apk -s upgrade
+```
+
+![perform a dry run of the upgrade](/assets/Dry-Run-Upgrade-Alpine-Linux.png)
+
+## Hold a Package Upgrade
+
+There are instances where you may want to keep a few packages back from an upgrade. For instance to keep nano in its current version – nano-5.9-r0 – run the command.
+
+```sh
+apk add nano=5.9-r0 
+```
+
+![Hold Package Upgrade in Alpine Linux](/assets/Hold-Package-Upgrade-Alpine-Linux.png)
+
+This will exempt the nano package from the upgrade as other packages are upgraded to their latest versions.
+
+To later release the package for the upgrade, run:
+
+```sh
+apk add 'nano>5.9'
+```
+
+## Run various package repair strategies
+
+e.g. running failed installation scripts again:
+
+```sh
+apk fix
+apk fix name-of-package  # will also reinstall name-of-package
+```
+
+## Listing installed package versions
+
+(add | grep package-name to filter for a specific package):
+
+```sh
+apk info -vv
+```
+
+## Installing build dependencies
+
+```sh
+sudo apk add build-base install-makedepends
+install-makedepends neovim
+```
+
+The repositories are stored in /etc/apk/repositories as one repository url per line. There's also /etc/apk/world which is a list of packages that are explicitly installed. It's possible to add/remove packages from this list and then running apk fix to apply those changes. The Alpine Linux wiki has a page comparing apk to other popular distros, with many helpful examples.
+
+New installations of postmarketOS let apk ask for confirmation by default. If you don't want this, delete /etc/apk/interactive (pmaports!3444).
+
+## Service management
+
+The service manager in postmarketOS is OpenRC. The basic service management is done with the familiar rc-service command.
+
+Note Tip: rc-service is also symlinked to service which is shorter to type.
+
+```sh
+rc-service networkmanager status
+rc-service networkmanager start
+rc-service networkmanager stop
+rc-service networkmanager restart
+```
+
+To enable or disable services on boot you use the rc-update command.
+
+```sh
+List the services that are added to a runlevel
+$ rc-update
+             bootmisc | boot                                   
+              chronyd |      default                           
+                 dbus |      default                           
+                devfs |                                 sysinit
+                dmesg |                                 sysinit
+                  gdm |      default                           
+              haveged |      default                           
+             hostname | boot                                   
+              hwclock | boot                                   
+            killprocs |                        shutdown        
+
+
+Start NetworkManager on boot (in the default runlevel)
+$ rc-update add networkmanager default
+
+Stop NetworkManager starting on boot
+$ rc-update del networkmanager default
+```
+
+## Resources
+
+<https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/>
+
+<https://www.tecmint.com/apk-command-examples/>
+
+<https://wiki.postmarketos.org/index.php?title=Terminal_cheat_sheet&mobileaction=toggle_view_mobile>
