@@ -251,6 +251,19 @@ rc-service sshd restart
 
 Now you can login as root using the password.
 
+## Setup the Repositories 📗
+
+Update you repositories under /etc/apk/repositories to include community, edge community and testing.
+
+```file
+#/media/cdrom/apks
+http://dl-cdn.alpinelinux.org/alpine/v3.17/main
+http://dl-cdn.alpinelinux.org/alpine/v3.17/community
+#http://dl-cdn.alpinelinux.org/alpine/edge/main
+http://dl-cdn.alpinelinux.org/alpine/edge/community
+http://dl-cdn.alpinelinux.org/alpine/edge/testing
+```
+
 ## Some Resources
 
 <https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/>
