@@ -207,7 +207,51 @@ Stop NetworkManager starting on boot
 $ rc-update del networkmanager default
 ```
 
-## Resources
+## Allow sshd login with password
+
+How to enable SSH root login on Alpine Linux
+
+On Alpine Linux, root SSH access using passwords is disabled by default. The following tutorial shows you how to enable password-based root login via SSH when using openssh. (I have not tested whether root access is enabled when installing Alpine Linux using dropbear instead of openssh)
+
+First, open the SSH config file using
+
+```sh
+vi /etc/ssh/sshd_config
+```
+
+or
+
+```sh
+nano /etc/ssh/sshd_config
+```
+
+Press I in order to activate vi editing mode.
+
+Remove the # at the beginning of the line and change prohibit-password to yes:
+
+Now look for this line and uncomment:
+
+```sh
+#PasswordAuthentication yes
+```
+
+Now save and exit by pressing Esc and then pressing :wq and Enter.
+
+After that, restart openssh using
+
+```sh
+service sshd restart
+```
+
+or
+
+```sh
+rc-service sshd restart
+```
+
+Now you can login as root using the password.
+
+## Some Resources
 
 <https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/>
 
