@@ -264,6 +264,54 @@ http://dl-cdn.alpinelinux.org/alpine/edge/community
 http://dl-cdn.alpinelinux.org/alpine/edge/testing
 ```
 
+## Install Sudo
+
+Byd efault alpine linux has no sudo package installed , you can cahnge user to root by executing :
+
+```sh
+su
+```
+
+or
+
+```sh
+su root
+```
+
+by the way if you still want to have sudo package just isntall this package by :
+
+```sh
+apk add sudo
+```
+
+## Add User
+
+You can add user to Apline Linux by running :
+
+```sh
+adduser [username]
+```
+
+Example :
+
+```sh
+adduser mike
+```
+
+then enter desired password and confirmation.
+
+also you can add user to root group that is called wheel in alpine
+
+```sh
+adduser [username] [group]
+```
+
+Example :
+
+```sh
+adduser mike wheel
+```
+
 ## Some Resources
 
 <https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/>
