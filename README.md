@@ -54,6 +54,39 @@ or
 nano
 ```
 
+## How to install a specific package version in Alpine
+
+You can set "sticky" versions like this:
+
+```sh
+# Both are equal
+apk add packagename=1.2.3-suffix
+apk add 'packagename<1.2.3-suffix'
+```
+
+That will upgrade packages only until the specified version. You can then safely use …
+
+```sh
+apk upgrade
+```
+
+to upgrade all packages, while packages with versions will remain with their version. To set a minimum version just use …
+
+```sh
+apk add "packagename>1.2.3-suffix"
+```
+
+In case you can't find a package, while you can see it in the UI for Alpine packages, update your sources/package database:
+
+```sh
+apk update
+```
+
+The package repository can be found here:
+
+<https://pkgs.alpinelinux.org/packages>
+Never pin packages from the "edge" branch of the alpine package repo, as these are in test and may be revoked. (At pkgs.alpinelinux.org/packages, click "edge" and change it to the alpine image version you use, and click "search" again.)
+
 ## Uninstalling a package
 
 ```sh
@@ -310,6 +343,26 @@ Example :
 
 ```sh
 adduser mike wheel
+```
+
+## Alpine Linux setup-proxy
+
+Remove proxy from alpine linux bash profile
+
+```sh
+cd /etc/profile.d/
+nano proxy.sh 
+```
+
+Comment proxy Env Vars or remove them :
+
+```file
+# this file was generated with and might get overwritten by setup-proxy
+
+#export http_proxy=http://192.168.1.100:10811
+#export https_proxy=http://192.168.1.100:10811
+#export ftp_proxy=http://192.168.1.100:10811
+export no_proxy=localhost
 ```
 
 ## Some Resources
