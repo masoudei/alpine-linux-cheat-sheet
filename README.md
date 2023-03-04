@@ -364,11 +364,3 @@ Comment proxy Env Vars or remove them :
 #export ftp_proxy=http://192.168.1.100:10811
 export no_proxy=localhost
 ```
-
-## Some Resources
-
-<https://www.cyberciti.biz/faq/10-alpine-linux-apk-command-examples/>
-
-<https://www.tecmint.com/apk-command-examples/>
-
-<https://wiki.postmarketos.org/index.php?title=Terminal_cheat_sheet&mobileaction=toggle_view_mobile>
