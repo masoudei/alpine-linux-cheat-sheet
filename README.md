@@ -299,7 +299,7 @@ http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
 ## Install Sudo
 
-Byd efault alpine linux has no sudo package installed , you can cahnge user to root by executing :
+By default, Alpine Linux does not have the `sudo` package installed, as it uses `doas` instead. You can also change user to root by executing :
 
 ```sh
 su
@@ -311,7 +311,13 @@ or
 su root
 ```
 
-by the way if you still want to have sudo package just isntall this package by :
+or
+
+```sh
+doas -s
+```
+
+by the way if you still want to have `sudo` package just install this package by :
 
 ```sh
 apk add sudo
